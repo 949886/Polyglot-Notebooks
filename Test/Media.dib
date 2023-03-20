@@ -1,0 +1,50 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"languageName":"csharp","name":"csharp"}]}}
+
+#!markdown
+
+**How to write a C# program in Polygrat Notebooks to extract audio from a video file and save it to a mp3 file.**
+
+To extract audio from a video file and save it to an mp3 file using C# in Polyglot Notebooks, you can use the FFmpeg library. Here's an example code that you can use:
+
+#!csharp
+
+#r "nuget: NReco.VideoConverter"
+
+using NReco.VideoConverter;
+
+var inputFile = @"video.mp4";
+var outputFile = @"audio.mp3";
+
+var ffMpeg = new FFMpegConverter();
+ffMpeg.ConvertMedia(inputFile, outputFile, "mp3");
+
+#!markdown
+
+This code first installs the NReco.VideoConverter NuGet package using the `%nuget install` magic command. Then, it imports the package and specifies the input and output file paths. Finally, it uses the `ConvertMedia` method of the `FFMpegConverter` class to extract the audio from the video file and save it as an mp3 file.
+
+Note that you need to have FFmpeg installed on your system for this code to work.
+
+#!csharp
+
+using System.Diagnostics;
+
+var command = "ffmpeg -i video.mp4 -f mp3 -acodec libmp3lame -y test.mp3";
+
+var processStartInfo = new ProcessStartInfo("cmd.exe", $"/c {command}")
+{
+    RedirectStandardOutput = true,
+    UseShellExecute = false,
+    CreateNoWindow = true
+};
+
+var process = Process.Start(processStartInfo);
+var output = process.StandardOutput.ReadToEnd();
+process.WaitForExit();
+
+Console.WriteLine(output);
+
+#!pwsh
+
+ffmpeg -i video.mp4 -f mp3 -acodec libmp3lame -y audio2.mp3

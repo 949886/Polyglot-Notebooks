@@ -1,0 +1,29 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"languageName":"csharp","name":"csharp"}]}}
+
+#!markdown
+
+**What is magic commands in Polyglot Notebooks and how to use it？**
+
+Magic commands are special commands in Polyglot Notebooks that allow you to perform various tasks such as changing the language of a code cell, installing a package, or displaying a visualization.
+
+The syntax for magic commands in Polyglot Notebooks is a single line that starts with a # followed by the command name and any arguments. Here are some examples:
+
+#!csharp
+
+#r "nuget:MathNet.Numerics" 
+// This installs the MathNet.Numerics package from NuGet
+
+#!markdown
+
+// This changes the language of the cell to Python and prints "Hello, world!"
+The #r magic command installs a NuGet package, and the #lang magic command changes the language of the code cell.
+
+There are many other magic commands available in Polyglot Notebooks for performing a variety of tasks such as managing kernels, displaying plots, and running shell commands. To see a list of all available magic commands, you can use the %lsmagic command:
+
+`%lsmagic`
+
+This will display a list of all available magic commands.
+
+Note that not all magic commands are available in all kernels. Some magic commands are specific to certain kernels, so you should consult the documentation for your kernel to see which magic commands are available.
